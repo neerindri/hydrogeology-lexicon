@@ -1,40 +1,36 @@
-const dictionary = [
-    {
-        de: 'hallochen',
-        en: 'hello',
-        fr: 'bonjour',
-        es: 'hola'
-    },
-    {
-        de: 'tschuss',
-        en: 'bye',
-        fr: 'ciao',
-        es: 'ciao'
-    }
-]
-const searchTerm = (row, lang, term) => {
-    return row[lang].includes(term)
+let Lexikon;
+async function getLexikon() {
+    return fetch('lexikon.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Returns a promise that resolves with JSON data
+        });
+}
+async function loadData(){
+    Lexikon = await getLexikon();
 }
 const search = () => {
     const lang = document.getElementById('language').value
-    const term = document.getElementById('search-term').value
-    var resultTable= document.getElementById('result-table')
-    var row = resultTable.insertRow(-1)
-    var resultDe = row.insertCell(0)
-    var resultEn = row.insertCell(1)
-    var resultFr = row.insertCell(2)
-    var resultEs = row.insertCell(3)
+    const term = document.getElementById('search-term').value.toLowerCase()
+    var resultTable= document.getElementById('results')
+    resultTable.innerHTML = ''
     
 
-    console.log('Got values', term, lang)
+    console.log('Got search values', term, lang)
 
-    result = dictionary.filter((row) => searchTerm(row,lang, term))
+    result = Lexikon.filter((row) => searchTerm(row,lang, term))
     console.log('Search result', result)
     if (result.length > 0) {
-        resultDe.innerHTML = result[0].de
-        resultEn.innerHTML = result[0].en
-        resultFr.innerHTML = result[0].fr
-        resultEs.innerHTML = result[0].es
+        result.forEach(element => {
+            resultTable.innerHTML += (`<p>German:${element.de}</p>` +
+            `<p>English:${element.en}</p>` +
+`<p>French:${element.fr}</p>` +
+`<p>Spanish:${element.es}</p>`)
+        });
+    } else {
+        resultTable.innerHTML = '<p>No results found for search term</p>'
     }
 }
 const searchButton = document.getElementById('search-button')
