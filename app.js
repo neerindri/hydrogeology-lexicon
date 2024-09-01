@@ -1,15 +1,19 @@
 let Lexikon;
-async function getLexikon() {
-    return fetch('lexikon.json')
-        .then(response => {
+function getLexikon() {
+    return fetch('./lexikon.json')
+        .then((response) => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
             }
             return response.json(); // Returns a promise that resolves with JSON data
-        });
+        }).then((data) => {Lexikon = Object.values(data)});
 }
-async function loadData(){
-    Lexikon = await getLexikon();
+// const Lexikon = fetch('lexikon.json').then(response => response.json).then(data => console.log(data))
+// const Lexikon = getLexikon()
+getLexikon();
+
+const searchTerm = (row, lang, term) => {
+    return row[lang].includes(term)
 }
 const search = () => {
     const lang = document.getElementById('language').value
