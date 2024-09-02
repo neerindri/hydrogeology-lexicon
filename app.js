@@ -5,14 +5,12 @@ function getLexikon() {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
       }
-      return response.json(); // Returns a promise that resolves with JSON data
+      return response.json();
     })
     .then((data) => {
       Lexikon = Object.values(data);
     });
 }
-// const Lexikon = fetch('lexikon.json').then(response => response.json).then(data => console.log(data))
-// const Lexikon = getLexikon()
 getLexikon();
 
 const searchTerm = (row, lang, term) => {
@@ -25,10 +23,12 @@ const search = () => {
   var resultTableBody = document.getElementById("results");
   resultTableBody.innerHTML = "";
 
-  console.log("Got search values", term, lang);
+  if (term.length < 3) {
+    resultTableBody.innerHTML = "<p>Enter at least three letters to search</p>";
+    return;
+  }
 
   results = Lexikon.filter((row) => searchTerm(row, lang, term));
-  console.log("Search result", results);
   if (results.length > 0) {
     results.forEach((result) => {
       const row = document.createElement("tr");
@@ -45,7 +45,11 @@ const search = () => {
   }
 };
 const searchButton = document.getElementById("search-button");
-const searchField = document.getElementById("search-term");
+const searchTermField = document.getElementById("search-term");
 
 searchButton.addEventListener("click", search);
-searchField.addEventListener("submit", search);
+searchTermField.addEventListener("keypress", (key) => {
+  if (key.key === "Enter") {
+    search();
+  }
+});

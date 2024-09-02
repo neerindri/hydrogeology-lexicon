@@ -29,6 +29,10 @@ h1 {
   color: #4caf50;
   margin-bottom: 20px;
 }
+.disclaimer {
+  text-align: center;
+  font-style: italic;
+}
 
 h2 {
   text-align: center;
@@ -39,7 +43,7 @@ h2 {
 /* Search input styles */
 input[type="search"] {
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
