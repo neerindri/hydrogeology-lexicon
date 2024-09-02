@@ -19,8 +19,9 @@ const searchTerm = (row, lang, term) => {
   return row[lang].includes(term);
 };
 const search = () => {
+  const searchField = document.getElementById("search-term");
   const lang = document.getElementById("language").value;
-  const term = document.getElementById("search-term").value.toLowerCase();
+  const term = searchField.value.toLowerCase();
   var resultTableBody = document.getElementById("results");
   resultTableBody.innerHTML = "";
 
@@ -44,5 +45,7 @@ const search = () => {
   }
 };
 const searchButton = document.getElementById("search-button");
+const searchField = document.getElementById("search-term");
 
 searchButton.addEventListener("click", search);
+searchField.addEventListener("submit", search);

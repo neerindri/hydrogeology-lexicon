@@ -1,0 +1,154 @@
+/* General page styles */
+* {
+  font-family: Ping, sans-serif;
+}
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.container-item {
+  padding: 20px;
+  border: 20px;
+}
+/* Heading styles */
+h1 {
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #4caf50;
+  margin-top: 30px;
+}
+
+/* Search input styles */
+input[type="search"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Dropdown select styles */
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* Button styling */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Base styles for the table */
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+/* Table header styles */
+thead {
+  background-color: #4caf50;
+  color: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Alternate row background colors */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+/* Add a hover effect for table rows */
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  th,
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  th,
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  tr {
+    margin-bottom: 15px;
+  }
+}
+
+/* Additional styling for links */
+a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
